@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TheArchive</string>
+    <string name="tvUser">"Usuario: "</string>
+    <string name="tvPass">Contraseña:</string>
+    <string name="btnLogin">Entrar</string>
+    <string name="btnRegister">Registrarse</string>
+    <string name="htUserTL">tu usuario</string>
+    <string name="htPassTL">tu contraseña</string>
+    <string name="tvRegister">Haz clic para registrarte</string>
+</resources>
