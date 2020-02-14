@@ -8,4 +8,6 @@
     <string name="htUserTL">tu usuario</string>
     <string name="htPassTL">tu contraseña</string>
     <string name="tvRegister">Haz clic para registrarte</string>
+    <string name="Close">Cerrar</string>
+    <string name="Open">Abrir</string>
 </resources>
