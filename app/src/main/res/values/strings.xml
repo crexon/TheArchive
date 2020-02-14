@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TheArchive</string>
+    <string name="tvUser">Username:</string>
+    <string name="tvPass">Password:</string>
+    <string name="btnLogin">Sign in</string>
+    <string name="btnRegister">Sign up</string>
+    <string name="htUserTL">your username</string>
+    <string name="htPassTL">your password</string>
+    <string name="tvRegister">Click here to sign up</string>
+
 </resources>
