@@ -6,4 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".EstanteriaActivity">
 
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:background="#28312C"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnMenu"
+                android:layout_width="82dp"
+                android:layout_height="67dp"
+                android:background="#E6F2FF"
+                android:src="@android:drawable/ic_menu_sort_by_size"
+                android:tint="#000000" />
+
+            <Button
+                android:id="@+id/btnMain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#F3FFFF"
+                android:fontFamily="@font/barbarian"
+                android:text="The Archive"
+                android:textSize="24sp" />
+
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edTextBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:background="#E6F2FF"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Buscar libros"
+            android:textAlignment="center"
+            android:fontFamily="@font/afterglow"/>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
