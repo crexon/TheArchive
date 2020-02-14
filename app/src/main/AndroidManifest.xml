@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".RegistroActivity"></activity>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".EstanteriaActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
