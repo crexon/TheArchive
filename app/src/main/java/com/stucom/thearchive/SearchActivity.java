@@ -2,9 +2,10 @@ package com.stucom.thearchive;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,9 +44,10 @@ public class SearchActivity extends AppCompatActivity {
         etSearch = findViewById(R.id.etSearch);
         imSearch = findViewById(R.id.imSearch);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        rcBooks.setLayoutManager(layoutManager);
+        //LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
+        //Layout para setear el contenido en columnas
+        rcBooks.setLayoutManager(new GridLayoutManager(this, 3));
         imSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,20 +97,26 @@ public class SearchActivity extends AppCompatActivity {
                 super(view);
                 ivPhotoBook = view.findViewById(R.id.ivPhotoBook);
                 tvBookName = view.findViewById(R.id.tvBookName);
-                tvCategory = view.findViewById(R.id.tvCategory);
-                tvAuthor = view.findViewById(R.id.tvAuthor);
-                tvPublisher = view.findViewById(R.id.tvPublisher);
-                tvPages = view.findViewById(R.id.tvPages);
+                //tvCategory = view.findViewById(R.id.tvCategory);
+                //tvAuthor = view.findViewById(R.id.tvAuthor);
+                //tvPublisher = view.findViewById(R.id.tvPublisher);
+                //tvPages = view.findViewById(R.id.tvPages);
 
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        /**
                         int position = getAdapterPosition();
-                        Intent intent = new Intent(RankingActivity.this, UserDetailsActivity.class);
-                        intent.putExtra("id", user.getId());
-                        startActivity(intent);
-                         **/
+                        Book book = books.get(position);
+                        Intent detalle = new Intent(SearchActivity.this, BDetailActivity.class);
+                        detalle.putExtra("titulo", book.getBookInfo().getTitle());
+                        detalle.putExtra("autor", book.getBookInfo().getAutor());
+                        detalle.putExtra("editorial", book.getBookInfo().getPublisher());
+                        detalle.putExtra("categoria", book.getBookInfo().getCategory());
+                        detalle.putExtra("paginas", book.getBookInfo().getPages());
+                        detalle.putExtra("fecha", book.getBookInfo().getPubDate());
+                        detalle.putExtra("descripcion", book.getBookInfo().getDescription());
+                        detalle.putExtra("miniatura", book.getBookInfo().getImg().getMiniatura());
+                        startActivity(detalle);
                     }
                 });
             }
@@ -132,15 +140,13 @@ public class SearchActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            Book book = books.get(position);
-
+             Book book = books.get(position);
              holder.tvBookName.setText(book.getBookInfo().getTitle());
-             holder.tvCategory.setText(book.getBookInfo().getCategory());
-             holder.tvAuthor.setText(book.getBookInfo().getAutor());
-             holder.tvPublisher.setText(book.getBookInfo().getPublisher());
-             holder.tvPages.setText(book.getBookInfo().getPages());
+             //holder.tvCategory.setText(book.getBookInfo().getCategory());
+             //holder.tvAuthor.setText(book.getBookInfo().getAutor());
+             //holder.tvPublisher.setText(book.getBookInfo().getPublisher());
+             //holder.tvPages.setText(book.getBookInfo().getPages());
              Picasso.get().load(book.getBookInfo().getImg().getMiniatura()).into(holder.ivPhotoBook);
-
         }
 
         @Override
