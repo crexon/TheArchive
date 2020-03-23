@@ -7,7 +7,7 @@
     <string name="btnRegister">Registrarse</string>
     <string name="htUserTL">tu usuario</string>
     <string name="htPassTL">tu contraseña</string>
-    <string name="tvRegister">Haz clic para registrarte</string>
+    <string name="tvRegister">Haz clic para <font color='#00a8ff'>registrarte</font></string>
     <string name="Close">Cerrar</string>
     <string name="Open">Abrir</string>
     <string name="tfUser">Nombre de usuario</string>
@@ -15,4 +15,5 @@
     <string name="tfSurname">Apellidos</string>
     <string name="tfName">Nombre</string>
     <string name="tfPass">Contraseña</string>
+    <string name="progressBar_dialog">Cargando...</string>
 </resources>
