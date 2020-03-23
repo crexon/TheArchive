@@ -9,4 +9,10 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="toast">
+        <item name="stColorBackground">#94ffab</item>
+        <item name="stTextColor">#000000</item>
+        <item name="stLength">LONG</item>
+    </style>
 </resources>
