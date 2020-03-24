@@ -9,6 +9,7 @@ import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.navigation.NavigationView;
 import com.stucom.thearchive.modelo_navigation.HelpFragment;
+import com.stucom.thearchive.modelo_navigation.SearchFragment;
 import com.stucom.thearchive.modelo_navigation.ShareFragment;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new HelpFragment()).commit();
+                    new SearchFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
 
         }
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (item.getItemId()) {
             case R.id.nav_home:
-                selectedFragment = new HelpFragment();
+                selectedFragment = new SearchFragment();
                 break;
 
             case R.id.nav_share:
