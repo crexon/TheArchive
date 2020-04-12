@@ -4,11 +4,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class Book {
 
+    @SerializedName("id")
+    private String idBook;
     @SerializedName("volumeInfo")
     private BookDetail bookInfo;
 
     public Book(){
-
     }
 
     public BookDetail getBookInfo() {
@@ -18,4 +19,8 @@ public class Book {
     public void setBookInfo(BookDetail bookInfo) {
         this.bookInfo = bookInfo;
     }
+
+    public String getIdBook() {return idBook;}
+
+    public void setIdBook(String idBook) {this.idBook = idBook;}
 }
