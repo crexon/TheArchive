@@ -102,6 +102,8 @@ public class SearchFragment extends Fragment {
                         int position = getAdapterPosition();
                         Book book = books.get(position);
                         Intent detalle = new Intent(getContext(), BDetailActivity.class);
+                        detalle.putExtra("id", book.getIdBook());
+                        Log.d("Pol", "La id del libro es: " + book.getIdBook());
                         detalle.putExtra("titulo", book.getBookInfo().getTitle());
                         detalle.putExtra("autor", book.getBookInfo().getAutor());
                         detalle.putExtra("editorial", book.getBookInfo().getPublisher());
