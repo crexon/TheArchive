@@ -30,5 +30,6 @@
 
     <string name="menu_home" translatable="false">Home</string>
     <string name="menu_share" translatable="false">Share</string>
+    <string name="menu_logout">Logout</string>
     <string name="title_activity_main" translatable="false">MainActivity</string>
 </resources>

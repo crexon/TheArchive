@@ -1,6 +1,5 @@
 package com.stucom.thearchive;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
@@ -8,7 +7,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.navigation.NavigationView;
-import com.stucom.thearchive.modelo_navigation.HelpFragment;
+import com.stucom.thearchive.modelo_navigation.LogoutFragment;
 import com.stucom.thearchive.modelo_navigation.SearchFragment;
 import com.stucom.thearchive.modelo_navigation.ShareFragment;
 
@@ -56,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_share:
                 selectedFragment = new ShareFragment();
+                break;
+
+            case R.id.nav_logout:
+                selectedFragment = new LogoutFragment();
                 break;
         }
 

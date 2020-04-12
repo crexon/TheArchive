@@ -40,7 +40,6 @@ public class BDetailActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bdetail);
-
         findViewById(R.id.btnBookRead).setOnClickListener(this);
         findViewById(R.id.btnBookReading).setOnClickListener(this);
         findViewById(R.id.btnBookUnread).setOnClickListener(this);
@@ -113,7 +112,7 @@ public class BDetailActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
-    public void getSeekBarDialog(){
+    private void getSeekBarDialog(){
         final AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
 
         LayoutInflater inflater = this.getLayoutInflater();

@@ -30,11 +30,10 @@ import com.tapadoo.alerter.OnShowAlertListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextInputEditText etUser, etPass;
     ProgressDialog progressDialog;
-    TextView tvRegister;
     AppUtils appUtils;
     Button btnSignIn;
 
@@ -44,25 +43,22 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         etUser = findViewById(R.id.etUser);
         etPass = findViewById(R.id.etPass);
-        btnSignIn = findViewById(R.id.btnSignIn);
-        tvRegister = findViewById(R.id.tvRegister);
         appUtils = new AppUtils(getApplicationContext());
+        btnSignIn = findViewById(R.id.btnSignIn);
+        btnSignIn.setOnClickListener(this);
+        findViewById(R.id.tvRegister).setOnClickListener(this);
+    }
 
 
-        tvRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tvRegister:
                 Intent intent = new Intent(LoginActivity.this, RegistroActivity.class);
                 startActivity(intent);
-                finish();
-            }
-        });
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loginUser();
-            }
-        });
+                break;
+            case R.id.btnSignIn: loginUser(); break;
+        }
     }
 
 

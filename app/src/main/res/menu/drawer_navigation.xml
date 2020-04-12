@@ -12,6 +12,10 @@
             android:id="@+id/nav_share"
             android:icon="@drawable/ic_share_black_24dp"
             android:title="@string/menu_share" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="@string/menu_logout" />
     </group>
 
 </menu>

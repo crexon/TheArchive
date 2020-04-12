@@ -1,14 +1,9 @@
 package com.stucom.thearchive.utils;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
-import android.view.View;
-import android.widget.SeekBar;
-
-import androidx.appcompat.app.AlertDialog;
-
 import com.stucom.thearchive.R;
 import com.tapadoo.alerter.Alerter;
 
@@ -39,4 +34,10 @@ public class AppUtils {
         SharedPreferences prefs = mContext.getSharedPreferences(mContext.getPackageName(), MODE_PRIVATE);
         return prefs.getString("username", "");
     }
+
+    public void deleteUserData() {
+        SharedPreferences.Editor editor = mContext.getSharedPreferences(mContext.getPackageName(), MODE_PRIVATE).edit();
+        editor.clear().apply();
+    }
+
 }
