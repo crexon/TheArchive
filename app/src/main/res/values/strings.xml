@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">TheArchive</string>
+    <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
     <string name="tvUser">Username:</string>
     <string name="tvPass">Password:</string>
     <string name="tfUser">Username</string>
@@ -15,6 +17,12 @@
     <string name="Open">Open</string>
     <string name="Close">Close</string>
     <string name="progressBar_dialog">Loading...</string>
+    <string name="add_book_description">Add book</string>
+    <string name="book_recommends">You recommends this book?</string>
+    <string name="book_recommends_positive">Yes</string>
+    <string name="book_recommends_negative">No</string>
+    <string name="book_reading_progress">Which is your progress?</string>
+    <string name="book_already_added">This book is already on your shelving!</string>
 
 
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>

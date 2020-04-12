@@ -15,4 +15,9 @@
         <item name="stTextColor">#000000</item>
         <item name="stLength">LONG</item>
     </style>
+
+    <style name="custom_fab">
+        <item name="android:background">@drawable/fab_label_background</item>
+        <item name="android:textColor">@color/blanco</item>
+    </style>
 </resources>

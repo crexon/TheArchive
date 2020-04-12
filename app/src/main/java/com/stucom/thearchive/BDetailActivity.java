@@ -1,28 +1,69 @@
 package com.stucom.thearchive;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
-
+import android.widget.Toast;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.muddzdev.styleabletoast.StyleableToast;
 import com.squareup.picasso.Picasso;
+import com.stucom.thearchive.utils.AppUtils;
+import java.util.HashMap;
+import java.util.Map;
 
-public class BDetailActivity extends AppCompatActivity {
+public class BDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
-    
+
+    AppUtils appUtils;
+    // Recommends 0 = no,  1 = si, 2 = no sabe
+    int recommends = 2, progreso;
     Intent detalle;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bdetail);
 
+        findViewById(R.id.btnBookRead).setOnClickListener(this);
+        findViewById(R.id.btnBookReading).setOnClickListener(this);
+        findViewById(R.id.btnBookUnread).setOnClickListener(this);
+        appUtils = new AppUtils(getApplicationContext());
         loadBookData();
+
     }
-    
-    private void loadBookData(){
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnBookRead:
+                dialogQuestion();
+                break;
+            case R.id.btnBookReading:
+                getSeekBarDialog();
+                break;
+            case R.id.btnBookUnread:
+                addBookToEstanteria(3, recommends, 0);
+                break;
+        }
+    }
+
+    private void loadBookData() {
         detalle = getIntent();
 
         String titulo = detalle.getStringExtra("titulo");
@@ -60,5 +101,92 @@ public class BDetailActivity extends AppCompatActivity {
         //bookIsbn.setText("ISBN 13: " + isbn);
 
     }
-    
+
+    private void dialogQuestion() {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        addBookToEstanteria(1, 1, 100);
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        addBookToEstanteria(1, 0, 100);
+                        break;
+                }
+            }
+        };
+        AlertDialog.Builder builder = new AlertDialog.Builder(BDetailActivity.this);
+        builder.setMessage("¿Recomiendas el libro?").setPositiveButton("Sí", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
+    }
+
+
+    public void getSeekBarDialog(){
+        final AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
+        final SeekBar seek = new SeekBar(this);
+        seek.setMax(100);
+        seek.setKeyProgressIncrement(1);
+
+        popDialog.setIcon(android.R.drawable.btn_star_big_on);
+        popDialog.setTitle(BDetailActivity.this.getString(R.string.book_reading_progress));
+        popDialog.setPositiveButton(BDetailActivity.this.getString(R.string.accept), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                addBookToEstanteria(2, recommends, progreso);
+            }
+        });
+        popDialog.setView(seek);
+        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                progreso = progress;
+                Log.d("Pol", "Progress = " + progress);
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+        });
+        popDialog.show();
+    }
+
+
+    protected void addBookToEstanteria(final int state, final int recommends, final int progress) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://192.168.56.1:8000/archive/estanteria/";
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("Pol", "La respuesta es: " + response);
+                        appUtils.showAlert(BDetailActivity.this);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        StyleableToast.makeText(BDetailActivity.this, BDetailActivity.this.getString(R.string.book_already_added), Toast.LENGTH_LONG, R.style.toast).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("identifier", detalle.getStringExtra("id"));
+                params.put("username", appUtils.getUserConnected());
+                params.put("state", String.valueOf(state));
+                params.put("progress", String.valueOf(progress));
+                params.put("recommendation", String.valueOf(recommends)); //Mirar de editar el servidor o intentar pasar la recomendacion con boolean
+                return params;
+            }
+        };
+        queue.add(request);
+    }
 }

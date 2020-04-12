@@ -56,7 +56,7 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-    
+
     protected void downloadBooks() {
         String search = etSearch.getText().toString();
 
@@ -71,7 +71,7 @@ public class SearchActivity extends AppCompatActivity {
                         Gson gson = new Gson();
                         BookList userList = gson.fromJson(response, BookList.class);
 
-                        Log.d("Pol",userList.getItems().toString());
+                        Log.d("Pol", userList.getItems().toString());
                         BookAdapter adapter = new BookAdapter(userList.getItems());
                         rcBooks.setAdapter(adapter);
                     }
@@ -90,7 +90,7 @@ public class SearchActivity extends AppCompatActivity {
 
         class ViewHolder extends RecyclerView.ViewHolder {
             ImageView ivPhotoBook;
-            TextView tvBookName ,tvCategory, tvAuthor, tvPublisher, tvPages;
+            TextView tvBookName, tvCategory, tvAuthor, tvPublisher, tvPages;
 
 
             ViewHolder(View view) {
@@ -108,6 +108,7 @@ public class SearchActivity extends AppCompatActivity {
                         int position = getAdapterPosition();
                         Book book = books.get(position);
                         Intent detalle = new Intent(SearchActivity.this, BDetailActivity.class);
+                        detalle.putExtra("id", book.getIdBook());
                         detalle.putExtra("titulo", book.getBookInfo().getTitle());
                         detalle.putExtra("autor", book.getBookInfo().getAutor());
                         detalle.putExtra("editorial", book.getBookInfo().getPublisher());
@@ -140,13 +141,14 @@ public class SearchActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-             Book book = books.get(position);
-             holder.tvBookName.setText(book.getBookInfo().getTitle());
-             //holder.tvCategory.setText(book.getBookInfo().getCategory());
-             //holder.tvAuthor.setText(book.getBookInfo().getAutor());
-             //holder.tvPublisher.setText(book.getBookInfo().getPublisher());
-             //holder.tvPages.setText(book.getBookInfo().getPages());
-             Picasso.get().load(book.getBookInfo().getImg().getMiniatura()).into(holder.ivPhotoBook);
+            Book book = books.get(position);
+            holder.tvBookName.setText(book.getBookInfo().getTitle());
+
+            //holder.tvCategory.setText(book.getBookInfo().getCategory());
+            //holder.tvAuthor.setText(book.getBookInfo().getAutor());
+            //holder.tvPublisher.setText(book.getBookInfo().getPublisher());
+            //holder.tvPages.setText(book.getBookInfo().getPages());
+            Picasso.get().load(book.getBookInfo().getImg().getMiniatura()).into(holder.ivPhotoBook);
         }
 
         @Override

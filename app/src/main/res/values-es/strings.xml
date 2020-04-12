@@ -16,4 +16,12 @@
     <string name="tfName">Nombre</string>
     <string name="tfPass">Contraseña</string>
     <string name="progressBar_dialog">Cargando...</string>
+    <string name="add_book_description">Agregar libro</string>
+    <string name="book_recommends">¿Recomiendas este libro?</string>
+    <string name="book_recommends_negative">Sí</string>
+    <string name="book_recommends_positive">No</string>
+    <string name="book_already_added">¡Este libro ya está en tu estantería!</string>
+    <string name="book_reading_progress">¿Cuál es tu progreso?</string>
+    <string name="accept">Aceptar</string>
+    <string name="cancel">Cancelar</string>
 </resources>

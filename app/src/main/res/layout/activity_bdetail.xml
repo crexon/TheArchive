@@ -7,59 +7,57 @@
     tools:context=".BDetailActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:id="@+id/appbar">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapse"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="@color/colorPrimary"
-            app:layout_scrollFlags="exitUntilCollapsed|scroll"
-            android:id="@+id/collapse"
-            app:title="Book Name"
+            app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
-            app:expandedTitleMarginEnd="64dp">
+            app:layout_scrollFlags="exitUntilCollapsed|scroll"
+            app:title="Book Name">
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?android:actionBarSize"
-                app:layout_collapseMode="pin"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                app:layout_collapseMode="pin" />
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:padding="8dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="20dp"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal"
+                android:padding="8dp">
 
                 <ImageView
+                    android:id="@+id/imMiniatura"
                     android:layout_width="120dp"
                     android:layout_height="160dp"
-                    android:id="@+id/imMiniatura"
                     android:layout_gravity="center_vertical"
-                    android:transitionName="thumbnail"
-                    android:src="@drawable/ic_launcher_background"/>
+                    android:src="@drawable/ic_launcher_background"
+                    android:transitionName="thumbnail" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="6dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="6dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tvTitulo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:maxLines="1"
+                        android:autoSizeTextType="uniform"
                         android:text="Titulo Libro"
                         android:textColor="@android:color/white"
-                        android:textSize="26sp"
                         android:textStyle="bold"
                         android:transitionName="title" />
 
@@ -144,5 +142,49 @@
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/btnAddBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            app:fab_labelStyle="@style/custom_fab">
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnBookRead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_colorNormal="@color/colorPrimary"
+                app:fab_colorPressed="@color/colorPrimaryDark"
+                app:fab_icon="@drawable/ic_book_black_24dp"
+                app:fab_size="normal"
+                app:fab_title="Leído" />
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnBookUnread"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_colorNormal="@color/rojo"
+                app:fab_colorPressed="@color/rojo_oscuro"
+                app:fab_icon="@drawable/ic_book_black_24dp"
+                app:fab_size="normal"
+                app:fab_title="No leído" />
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnBookReading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_colorNormal="@color/naranja"
+                app:fab_colorPressed="@color/naranja_oscuro"
+                app:fab_icon="@drawable/ic_book_black_24dp"
+                app:fab_size="normal"
+                app:fab_title="Leyendo" />
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+    </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
