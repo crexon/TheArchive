@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -51,15 +52,9 @@ public class BDetailActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnBookRead:
-                dialogQuestion();
-                break;
-            case R.id.btnBookReading:
-                getSeekBarDialog();
-                break;
-            case R.id.btnBookUnread:
-                addBookToEstanteria(3, recommends, 0);
-                break;
+            case R.id.btnBookRead:dialogQuestion(); break;
+            case R.id.btnBookReading:getSeekBarDialog(); break;
+            case R.id.btnBookUnread:addBookToEstanteria(3, recommends, 0); break;
         }
     }
 
@@ -107,12 +102,8 @@ public class BDetailActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
-                    case DialogInterface.BUTTON_POSITIVE:
-                        addBookToEstanteria(1, 1, 100);
-                        break;
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        addBookToEstanteria(1, 0, 100);
-                        break;
+                    case DialogInterface.BUTTON_POSITIVE:addBookToEstanteria(1, 1, 100); break;
+                    case DialogInterface.BUTTON_NEGATIVE:addBookToEstanteria(1, 0, 100); break;
                 }
             }
         };
@@ -124,9 +115,14 @@ public class BDetailActivity extends AppCompatActivity implements View.OnClickLi
 
     public void getSeekBarDialog(){
         final AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
-        final SeekBar seek = new SeekBar(this);
-        seek.setMax(100);
-        seek.setKeyProgressIncrement(1);
+
+        LayoutInflater inflater = this.getLayoutInflater();
+        View view=inflater.inflate(R.layout.dialog_seek,null);
+        SeekBar seekBar = view.findViewById(R.id.size_seekbar);
+        final TextView seekProgress = view.findViewById(R.id.set_size_help_text);
+
+        seekBar.setMax(100);
+        seekBar.setKeyProgressIncrement(1);
 
         popDialog.setIcon(android.R.drawable.btn_star_big_on);
         popDialog.setTitle(BDetailActivity.this.getString(R.string.book_reading_progress));
@@ -135,22 +131,15 @@ public class BDetailActivity extends AppCompatActivity implements View.OnClickLi
                 addBookToEstanteria(2, recommends, progreso);
             }
         });
-        popDialog.setView(seek);
-        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
-
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                progreso = progress;
-                Log.d("Pol", "Progress = " + progress);
-            }
+        popDialog.setView(view);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) { seekProgress.setText(progress + " %"); progreso = progress; }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
-
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
-
         });
         popDialog.show();
     }
@@ -165,7 +154,6 @@ public class BDetailActivity extends AppCompatActivity implements View.OnClickLi
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("Pol", "La respuesta es: " + response);
                         appUtils.showAlert(BDetailActivity.this);
                     }
                 },
