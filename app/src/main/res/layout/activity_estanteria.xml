@@ -47,10 +47,10 @@
             android:layout_height="38dp"
             android:background="#E6F2FF"
             android:ems="10"
+            android:fontFamily="@font/afterglow"
             android:inputType="textPersonName"
             android:text="Buscar libros"
-            android:textAlignment="center"
-            android:fontFamily="@font/afterglow"/>
+            android:textAlignment="center" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
