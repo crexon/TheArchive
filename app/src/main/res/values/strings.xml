@@ -11,6 +11,10 @@
     <string name="tfVerifiPass">Repeat password</string>
     <string name="btnLogin">Sign in</string>
     <string name="btnRegister">Sign up</string>
+    <string name="btnEditProfile">Edit Profile</string>
+    <string name="btnSettings">Settings</string>
+    <string name="btnSeeBooks">See Books</string>
+    <string name="btnSave">Save</string>
     <string name="htUserTL">your username</string>
     <string name="htPassTL">your password</string>
     <string name="tvRegister">Click here to <font color='#00a8ff'>sign up</font></string>

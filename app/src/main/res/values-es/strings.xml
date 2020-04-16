@@ -5,6 +5,10 @@
     <string name="tvPass">Contraseña:</string>
     <string name="btnLogin">Entrar</string>
     <string name="btnRegister">Registrarse</string>
+    <string name="btnEditProfile">Editar Perfil</string>
+    <string name="btnSettings">Configuración</string>
+    <string name="btnSeeBooks">Ver Libros</string>
+    <string name="btnSave">Guardar</string>
     <string name="htUserTL">tu usuario</string>
     <string name="htPassTL">tu contraseña</string>
     <string name="tvRegister">Haz clic para <font color='#00a8ff'>registrarte</font></string>

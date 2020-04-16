@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PerfilUsuarioActivity"></activity>
+        <activity android:name=".EditarPerfilActivity"></activity>
+        <activity android:name=".PerfilUsuarioActivity" />
         <activity android:name=".utils.SessionManager">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
