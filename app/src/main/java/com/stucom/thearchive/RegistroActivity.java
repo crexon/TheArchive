@@ -24,11 +24,10 @@ import com.muddzdev.styleabletoast.StyleableToast;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegistroActivity extends AppCompatActivity {
+public class RegistroActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextInputEditText etUser, etName, etSurname, etPass, etPassVerify;
     ProgressDialog progressDialog;
-    Button btnSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,25 +38,12 @@ public class RegistroActivity extends AppCompatActivity {
         etSurname = findViewById(R.id.etSurname);
         etPass = findViewById(R.id.etPass);
         etPassVerify = findViewById(R.id.etPassVerify);
-        btnSignUp = findViewById(R.id.btnSignUp);
-
-
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (etPass.getText().toString().equals(etPassVerify.getText().toString())) {
-                    registerUser();
-                } else {
-                    Toast.makeText(RegistroActivity.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        findViewById(R.id.btnSignUp).setOnClickListener(this);
     }
-
 
     protected void registerUser() {
         prepareProgressBar(true);
-        btnSignUp.setVisibility(View.GONE);
+        findViewById(R.id.btnSignUp).setVisibility(View.GONE);
         final String user = this.etUser.getText().toString();
         final String name = this.etName.getText().toString();
         final String surname = this.etSurname.getText().toString();
@@ -79,7 +65,7 @@ public class RegistroActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         prepareProgressBar(false);
-                        btnSignUp.setVisibility(View.VISIBLE);
+                        findViewById(R.id.btnSignUp).setVisibility(View.VISIBLE);
                         StyleableToast.makeText(RegistroActivity.this, "The data provided is not correct", Toast.LENGTH_LONG, R.style.toast).show();
                         Log.d("Pol", error.toString());
                     }
@@ -115,4 +101,20 @@ public class RegistroActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnSignUp:
+                if (!etUser.getText().toString().isEmpty() && !etName.getText().toString().isEmpty() && !etSurname.getText().toString().isEmpty() && !etPass.getText().toString().isEmpty()){
+                    if (etPass.getText().toString().equals(etPassVerify.getText().toString())) {
+                        registerUser();
+                    } else{
+                        StyleableToast.makeText(RegistroActivity.this, RegistroActivity.this.getString(R.string.pass_equals), Toast.LENGTH_LONG, R.style.toast).show();
+                    }
+                } else{
+                    StyleableToast.makeText(RegistroActivity.this, RegistroActivity.this.getString(R.string.data_missing), Toast.LENGTH_LONG, R.style.toast).show();
+                }
+                break;
+        }
+    }
 }

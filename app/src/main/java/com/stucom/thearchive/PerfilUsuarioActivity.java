@@ -22,7 +22,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                moveToEditarPerfil();
+                //moveToEditarPerfil();
             }
         });
 
@@ -42,11 +42,6 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
 
     }
 
-    private void moveToEditarPerfil() {
-        Intent intent = new Intent(PerfilUsuarioActivity.this, EditarPerfilActivity.class);
-        startActivity(intent);
-        finish();
-    }
 
     private void moveToEstanteriaActivity() {
         Intent intent = new Intent(PerfilUsuarioActivity.this, EstanteriaActivity.class);

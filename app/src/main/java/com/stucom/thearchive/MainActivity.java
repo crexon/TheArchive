@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.navigation.NavigationView;
 import com.stucom.thearchive.modelo_navigation.LogoutFragment;
+import com.stucom.thearchive.modelo_navigation.ProfileFragment;
 import com.stucom.thearchive.modelo_navigation.SearchFragment;
 import com.stucom.thearchive.modelo_navigation.ShareFragment;
 
@@ -51,6 +52,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.nav_home:
                 selectedFragment = new SearchFragment();
+                break;
+
+            case R.id.nav_profile:
+                selectedFragment = new ProfileFragment();
                 break;
 
             case R.id.nav_share:

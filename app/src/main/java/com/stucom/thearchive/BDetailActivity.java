@@ -43,7 +43,7 @@ public class BDetailActivity extends AppCompatActivity implements View.OnClickLi
         findViewById(R.id.btnBookRead).setOnClickListener(this);
         findViewById(R.id.btnBookReading).setOnClickListener(this);
         findViewById(R.id.btnBookUnread).setOnClickListener(this);
-        appUtils = new AppUtils(getApplicationContext());
+        appUtils = new AppUtils(this);
         loadBookData();
 
     }
@@ -167,7 +167,7 @@ public class BDetailActivity extends AppCompatActivity implements View.OnClickLi
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("identifier", detalle.getStringExtra("id"));
-                params.put("username", appUtils.getUserConnected());
+                params.put("username", appUtils.getUsername());
                 params.put("state", String.valueOf(state));
                 params.put("progress", String.valueOf(progress));
                 params.put("recommendation", String.valueOf(recommends)); //Mirar de editar el servidor o intentar pasar la recomendacion con boolean
