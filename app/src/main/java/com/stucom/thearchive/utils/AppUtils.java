@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.google.gson.Gson;
 import com.stucom.thearchive.R;
+import com.stucom.thearchive.modelo_user.User;
 import com.tapadoo.alerter.Alerter;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -30,9 +33,17 @@ public class AppUtils {
                 .show();
     }
 
-    public String getUserConnected() {
+    public String getUsername() {
         SharedPreferences prefs = mContext.getSharedPreferences(mContext.getPackageName(), MODE_PRIVATE);
         return prefs.getString("username", "");
+    }
+
+    public User getUserConnected() {
+        SharedPreferences prefs = mContext.getSharedPreferences(mContext.getPackageName(), MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefs.getString("user", "");
+        User user = gson.fromJson(json, User.class);
+        return user;
     }
 
     public void deleteUserData() {
