@@ -27,6 +27,10 @@
     <string name="book_recommends_negative">No</string>
     <string name="book_reading_progress">Which is your progress?</string>
     <string name="book_already_added">This book is already on your shelving!</string>
+    <string name="update_user_error">The information introduced is wrong!</string>
+    <string name="update_user_correct">User information updated successfully!</string>
+    <string name="pass_equals">Passwords do not match!</string>
+    <string name="data_missing">There can not be empty fields!</string>
 
 
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
@@ -35,5 +39,6 @@
     <string name="menu_home" translatable="false">Home</string>
     <string name="menu_share" translatable="false">Share</string>
     <string name="menu_logout">Logout</string>
+    <string name="menu_profile">Profile</string>
     <string name="title_activity_main" translatable="false">MainActivity</string>
 </resources>

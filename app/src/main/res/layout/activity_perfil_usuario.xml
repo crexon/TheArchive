@@ -4,42 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D1E2E8"
-    tools:context=".PerfilUsuarioActivity">
+    android:background="#D1E2E8">
 
     <Button
         android:id="@+id/btnSettings"
-        android:layout_width="409dp"
+        android:layout_width="304dp"
         android:layout_height="44dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:background="#FFFFFF"
         android:text="@string/btnSettings"
         android:textColor="#215C22"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSeeBooks"
         tools:textStyle="bold" />
 
     <Button
         android:id="@+id/btnSeeBooks"
-        android:layout_width="409dp"
+        android:layout_width="304dp"
         android:layout_height="44dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="36dp"
         android:background="#FFFFFF"
         android:text="@string/btnSeeBooks"
         android:textColor="#215C22"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnEditProfile"
         tools:textStyle="bold" />
 
     <Button
         android:id="@+id/btnEditProfile"
-        android:layout_width="409dp"
+        android:layout_width="304dp"
         android:layout_height="44dp"
         android:layout_marginTop="32dp"
         android:background="#FFFFFF"
@@ -60,15 +59,16 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="18sp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUser" />
 
     <ImageView
-        android:id="@+id/ivLauncher2"
-        android:layout_width="412dp"
-        android:layout_height="192dp"
+        android:id="@+id/ivPhoto"
+        android:layout_width="206dp"
+        android:layout_height="156dp"
         android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,6 +87,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivLauncher2" />
+        app:layout_constraintTop_toBottomOf="@+id/ivPhoto" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
