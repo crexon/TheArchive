@@ -54,6 +54,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 .commit();
     }
 
+
+    private void moveToSettings() {
+        SettingsFragment fragment= new SettingsFragment();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(((ViewGroup)getView().getParent()).getId(), fragment, "findThisFragment")
+                .commit();
+    }
+
     private void downloadUser(){
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         String url = "http://192.168.56.1:8000/archive/user/" + appUtils.getUsername();
@@ -87,7 +95,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btnEditProfile: moveToEditProfile(); break;
             case R.id.btnSeeBooks: break;
-            case R.id.btnSettings: break;
+            case R.id.btnSettings: moveToSettings(); break;
         }
     }
 }

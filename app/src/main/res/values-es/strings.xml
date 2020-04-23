@@ -30,8 +30,11 @@
     <string name="cancel">Cancelar</string>
     <string name="menu_logout">Cerrar sesión</string>
     <string name="menu_profile">Perfil</string>
-    <string name="update_user_error">La información introducida es incorrecta!</string>
-    <string name="update_user_correct">La información del usuario ha sido actualizada correctamente!</string>
-    <string name="pass_equals">Las contraseñas no coinciden!</string>
-    <string name="data_missing">No puede haber campos vacios!</string>
+    <string name="update_user_error">¡La información introducida es incorrecta!</string>
+    <string name="update_user_correct">¡La información del usuario ha sido actualizada correctamente!</string>
+    <string name="pass_equals">¡Las contraseñas no coinciden!</string>
+    <string name="data_missing">¡No puede haber campos vacios!</string>
+    <string name="delete_error">¡No se a podido eliminar la cuenta!</string>
+    <string name="btnDelete">Eliminar cuenta</string>
+    <string name="delete_correct">¡La cuenta ha sido eliminada correctamente!</string>
 </resources>
