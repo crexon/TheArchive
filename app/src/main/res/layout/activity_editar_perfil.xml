@@ -9,7 +9,6 @@
         android:id="@+id/btnEditProfile"
         android:layout_width="409dp"
         android:layout_height="44dp"
-        android:layout_marginTop="55dp"
         android:background="#ccf8ec"
         android:text="@string/btnEditProfile"
         android:textColor="#215C22"
