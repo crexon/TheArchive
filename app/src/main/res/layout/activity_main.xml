@@ -34,11 +34,17 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#55605a"
         app:headerLayout="@layout/nav_header"
-        app:itemIconTint="@color/blanco"
-        app:itemTextColor="@color/blanco"
         app:menu="@menu/drawer_navigation" />
+
+
+    <!--
+
+    android:layout_gravity="start"
+    android:background="#55605a"
+    app:itemIconTint="@color/blanco"
+    app:itemTextColor="@color/blanco"
+    -->
 
 </androidx.drawerlayout.widget.DrawerLayout>
 
