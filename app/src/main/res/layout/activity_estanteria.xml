@@ -4,53 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D1E2E8"
     tools:context=".EstanteriaActivity">
 
-    <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:background="#28312C"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+        android:id="@+id/btnSeeAll"
+        android:layout_width="304dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="64dp"
+        android:background="#FFFFFF"
+        android:text="@string/btnEditProfile"
+        android:textColor="#215C22"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/tvTittle"
+        tools:text="ALL"
+        tools:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <Button
+        android:id="@+id/btnReading"
+        android:layout_width="304dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="32dp"
+        android:background="#FFFFFF"
+        android:text="@string/btnEditProfile"
+        android:textColor="#215C22"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSeeAll"
+        tools:text="READING"
+        tools:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/btnMenu"
-                android:layout_width="82dp"
-                android:layout_height="67dp"
-                android:background="#E6F2FF"
-                app:srcCompat="@android:drawable/ic_menu_sort_by_size"
-                android:tint="#000000" />
+    <Button
+        android:id="@+id/btnWantTo"
+        android:layout_width="304dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="32dp"
+        android:background="#FFFFFF"
+        android:text="@string/btnEditProfile"
+        android:textColor="#215C22"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRead"
+        tools:text="WANT TO READ"
+        tools:textStyle="bold" />
 
-            <Button
-                android:id="@+id/btnMain"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#F3FFFF"
-                android:fontFamily="@font/barbarian"
-                android:text="The Archive"
-                android:textSize="24sp" />
+    <Button
+        android:id="@+id/btnRead"
+        android:layout_width="304dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="32dp"
+        android:background="#FFFFFF"
+        android:text="@string/btnEditProfile"
+        android:textColor="#215C22"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnReading"
+        tools:text="READ"
+        tools:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/tvTittle"
+        android:layout_width="238dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="124dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="@android:color/tertiary_text_dark"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="BOOK SHELVES" />
 
-        </LinearLayout>
-
-        <EditText
-            android:id="@+id/edTextBuscar"
-            android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:background="#E6F2FF"
-            android:ems="10"
-            android:fontFamily="@font/afterglow"
-            android:inputType="textPersonName"
-            android:text="Buscar libros"
-            android:textAlignment="center" />
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
