@@ -50,7 +50,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
         final String pass = this.etPass.getText().toString();
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.56.1:8000/archive/signup/";
+        String url = "http://169.254.213.127:8000/archive/signup/";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,

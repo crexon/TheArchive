@@ -34,6 +34,8 @@
     <string name="data_missing">There can not be empty fields!</string>
     <string name="delete_error">The account could not be deleted!</string>
     <string name="delete_correct">The account has been deleted correctly!</string>
+    <string name="share_text">If you want to organize your book shelf virtually on your smartphone, I recommend this App: TheArchive</string>
+    <string name="share_thanks">To collaborate on the project, the best way to help us is by sharing it!</string>
 
 
 

@@ -1,6 +1,7 @@
 package com.stucom.thearchive.modelo_navigation;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
@@ -20,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.muddzdev.styleabletoast.StyleableToast;
+import com.stucom.thearchive.BDetailActivity;
 import com.stucom.thearchive.LoginActivity;
 import com.stucom.thearchive.R;
 import com.stucom.thearchive.utils.AppUtils;
@@ -42,7 +45,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private void deleteUser(){
         prepareProgressBar(true);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String url = "http://192.168.56.1:8000/archive/user/" + appUtils.getUsername();
+        String url = "http://169.254.213.127:8000/archive/user/" + appUtils.getUsername();
         StringRequest request = new StringRequest(
                 Request.Method.DELETE,
                 url,
@@ -86,8 +89,23 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnDelete: deleteUser(); break;
+            case R.id.btnDelete: dialogQuestion(); break;
         }
+    }
+
+    private void dialogQuestion() {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE: deleteUser(); break;
+                    case DialogInterface.BUTTON_NEGATIVE: break;
+                }
+            }
+        };
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("¿Seguro que quieres eliminar la cuenta?").setPositiveButton("Sí", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
     }
 
 }
