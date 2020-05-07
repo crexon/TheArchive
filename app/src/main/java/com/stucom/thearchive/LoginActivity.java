@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         final String pass = this.etPass.getText().toString();
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://169.254.213.127:8000/archive/login/";
+        String url = "http://169.254.25.54:8000/archive/login/";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,

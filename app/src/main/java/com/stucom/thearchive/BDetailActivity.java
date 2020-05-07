@@ -146,7 +146,7 @@ public class BDetailActivity extends AppCompatActivity implements View.OnClickLi
 
     protected void addBookToEstanteria(final int state, final int recommends, final int progress) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://169.254.213.127:8000/archive/estanteria/";
+        String url = "http://169.254.25.54:8000/archive/estanteria/";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
