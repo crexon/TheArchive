@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorPrimary</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -19,5 +19,11 @@
     <style name="custom_fab">
         <item name="android:background">@drawable/fab_label_background</item>
         <item name="android:textColor">@color/blanco</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">#FFFF</item>
+        <item name="android:textColorSecondary">#FFFF</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 </resources>

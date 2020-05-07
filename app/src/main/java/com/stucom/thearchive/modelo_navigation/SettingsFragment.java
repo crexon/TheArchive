@@ -45,7 +45,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private void deleteUser(){
         prepareProgressBar(true);
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String url = "http://169.254.213.127:8000/archive/user/" + appUtils.getUsername();
+        String url = "http://169.254.25.54:8000/archive/user/" + appUtils.getUsername();
         StringRequest request = new StringRequest(
                 Request.Method.DELETE,
                 url,

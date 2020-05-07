@@ -54,7 +54,7 @@ public class EditFragment extends Fragment implements View.OnClickListener {
         final String pass = this.etPassVerify.getText().toString();
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String url = "http://169.254.213.127:8000/archive/user/" + appUtils.getUserConnected().getUsername();
+        String url = "http://169.254.25.54:8000/archive/user/" + appUtils.getUserConnected().getUsername();
         StringRequest request = new StringRequest(
                 Request.Method.PUT,
                 url,

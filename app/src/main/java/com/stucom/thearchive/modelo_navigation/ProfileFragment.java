@@ -64,7 +64,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private void downloadUser(){
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String url = "http://169.254.213.127:8000/archive/user/" + appUtils.getUsername();
+        String url = "http://169.254.25.54:8000/archive/user/" + appUtils.getUsername();
         StringRequest request = new StringRequest(
                 Request.Method.GET,
                 url,
