@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,6 +27,9 @@ import com.stucom.thearchive.BDetailActivity;
 import com.stucom.thearchive.LoginActivity;
 import com.stucom.thearchive.R;
 import com.stucom.thearchive.utils.AppUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SettingsFragment extends Fragment implements View.OnClickListener {
 
@@ -63,8 +67,15 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                         prepareProgressBar(false);
                         StyleableToast.makeText(getActivity(), getActivity().getString(R.string.delete_error), Toast.LENGTH_LONG, R.style.toast).show();
                     }
-                }
-        );
+                })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Authorization", "Token " + appUtils.getToken());
+                return params;
+            }
+        };
         queue.add(request);
     }
 

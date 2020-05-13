@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -19,6 +21,9 @@ import com.stucom.thearchive.R;
 import com.stucom.thearchive.modelo_user.Token;
 import com.stucom.thearchive.modelo_user.User;
 import com.stucom.thearchive.utils.AppUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -85,8 +90,15 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                     }
-                }
-        );
+                })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Authorization", "Token " + appUtils.getToken());
+                return params;
+            }
+        };
         queue.add(request);
     }
 

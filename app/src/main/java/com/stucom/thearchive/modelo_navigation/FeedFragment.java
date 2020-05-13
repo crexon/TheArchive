@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -25,13 +26,17 @@ import com.google.gson.reflect.TypeToken;
 import com.muddzdev.styleabletoast.StyleableToast;
 import com.stucom.thearchive.R;
 import com.stucom.thearchive.modelo_feed.Feed;
+import com.stucom.thearchive.utils.AppUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FeedFragment extends Fragment {
 
     RecyclerView rcFeeds;
+    AppUtils appUtils;
 
     @Nullable
     @Override
@@ -40,6 +45,7 @@ public class FeedFragment extends Fragment {
 
         // Type 1 = leido, 2 = leyendo, 3 = quiere leer (no), 4 = perfila actualizado
         rcFeeds = v.findViewById(R.id.rcFeed);
+        appUtils = new AppUtils(getActivity());
         rcFeeds.setLayoutManager(new LinearLayoutManager(getContext()));
         downloadData();
 
@@ -70,8 +76,15 @@ public class FeedFragment extends Fragment {
                     public void onErrorResponse(VolleyError error) {
                         StyleableToast.makeText(getActivity(), getActivity().getString(R.string.content_download), Toast.LENGTH_LONG, R.style.toast).show();
                     }
-                }
-        );
+                })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Authorization", "Token " + appUtils.getToken());
+                return params;
+            }
+        };
         queue.add(request);
     }
 

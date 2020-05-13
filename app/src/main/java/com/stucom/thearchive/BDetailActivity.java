@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -170,7 +172,13 @@ public class BDetailActivity extends AppCompatActivity implements View.OnClickLi
                 params.put("username", appUtils.getUsername());
                 params.put("state", String.valueOf(state));
                 params.put("progress", String.valueOf(progress));
-                params.put("recommendation", String.valueOf(recommends)); //Mirar de editar el servidor o intentar pasar la recomendacion con boolean
+                params.put("recommendation", String.valueOf(recommends));
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Authorization", "Token " + appUtils.getToken());
                 return params;
             }
         };

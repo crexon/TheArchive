@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -53,14 +54,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tvRegister:
-                Intent intent = new Intent(LoginActivity.this, RegistroActivity.class);
-                startActivity(intent);
-                break;
+            case R.id.tvRegister: Intent intent = new Intent(LoginActivity.this, RegistroActivity.class); startActivity(intent); break;
             case R.id.btnSignIn: loginUser(); break;
         }
     }
-
 
     protected void loginUser() {
         prepareProgressBar(true);

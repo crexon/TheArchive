@@ -15,7 +15,6 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class AppUtils {
     Context mContext;
-    private String user = "";
 
     public AppUtils(Context context) {
         this.mContext = context;
@@ -37,6 +36,12 @@ public class AppUtils {
         SharedPreferences prefs = mContext.getSharedPreferences(mContext.getPackageName(), MODE_PRIVATE);
         return prefs.getString("username", "");
     }
+
+    public String getToken() {
+        SharedPreferences prefs = mContext.getSharedPreferences(mContext.getPackageName(), MODE_PRIVATE);
+        return prefs.getString("token", "");
+    }
+
 
     public User getUserConnected() {
         SharedPreferences prefs = mContext.getSharedPreferences(mContext.getPackageName(), MODE_PRIVATE);
