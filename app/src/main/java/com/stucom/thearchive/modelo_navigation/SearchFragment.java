@@ -68,8 +68,6 @@ public class SearchFragment extends Fragment {
                     public void onResponse(String response) {
                         Gson gson = new Gson();
                         BookList userList = gson.fromJson(response, BookList.class);
-
-                        Log.d("Pol", userList.getItems().toString());
                         BookAdapter adapter = new BookAdapter(userList.getItems());
                         rcBooks.setAdapter(adapter);
                     }
@@ -103,14 +101,20 @@ public class SearchFragment extends Fragment {
                         Book book = books.get(position);
                         Intent detalle = new Intent(getContext(), BDetailActivity.class);
                         detalle.putExtra("id", book.getIdBook());
-                        Log.d("Pol", "La id del libro es: " + book.getIdBook());
-                        detalle.putExtra("titulo", book.getBookInfo().getTitle());
-                        detalle.putExtra("autor", book.getBookInfo().getAutor());
-                        detalle.putExtra("editorial", book.getBookInfo().getPublisher());
-                        detalle.putExtra("categoria", book.getBookInfo().getCategory());
-                        detalle.putExtra("paginas", book.getBookInfo().getPages());
-                        detalle.putExtra("fecha", book.getBookInfo().getPubDate());
-                        detalle.putExtra("descripcion", book.getBookInfo().getDescription());
+                        if (book.getBookInfo().getTitle() != null) { detalle.putExtra("titulo", book.getBookInfo().getTitle()); }
+                        else { detalle.putExtra("titulo", " ");}
+                        if (book.getBookInfo().getAutor() != null) { detalle.putExtra("autor", book.getBookInfo().getAutor()); }
+                        else { detalle.putExtra("autor", " ");}
+                        if (book.getBookInfo().getPublisher() != null) { detalle.putExtra("editorial", book.getBookInfo().getPublisher()); }
+                        else { detalle.putExtra("editorial", " ");}
+                        if (book.getBookInfo().getCategory() != null) { detalle.putExtra("categoria", book.getBookInfo().getCategory()); }
+                        else { detalle.putExtra("categoria", " ");}
+                        if (book.getBookInfo().getPages() != null) { detalle.putExtra("paginas", book.getBookInfo().getPages()); }
+                        else { detalle.putExtra("paginas", " ");}
+                        if (book.getBookInfo().getPubDate() != null) { detalle.putExtra("fecha", book.getBookInfo().getPubDate()); }
+                        else { detalle.putExtra("fecha", " ");}
+                        if (book.getBookInfo().getDescription() != null) { detalle.putExtra("descripcion", book.getBookInfo().getDescription()); }
+                        else { detalle.putExtra("descripcion", " ");}
                         if (book.getBookInfo().getImg() != null) {
                             detalle.putExtra("miniatura", book.getBookInfo().getImg().getMiniatura());
                         }

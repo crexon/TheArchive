@@ -26,6 +26,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.muddzdev.styleabletoast.StyleableToast;
 import com.squareup.picasso.Picasso;
 import com.stucom.thearchive.utils.AppUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,26 +43,28 @@ public class BDetailActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bdetail);
+
+        detalle = getIntent();
         findViewById(R.id.btnBookRead).setOnClickListener(this);
         findViewById(R.id.btnBookReading).setOnClickListener(this);
         findViewById(R.id.btnBookUnread).setOnClickListener(this);
+        if (detalle.getStringExtra("tipo") != null) { findViewById(R.id.btnAddBook).setVisibility(View.GONE); }
         appUtils = new AppUtils(this);
         loadBookData();
+
 
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnBookRead:dialogQuestion(); break;
-            case R.id.btnBookReading:getSeekBarDialog(); break;
-            case R.id.btnBookUnread:addBookToEstanteria(3, recommends, 0); break;
+            case R.id.btnBookRead: dialogQuestion(); break;
+            case R.id.btnBookReading: getSeekBarDialog(); break;
+            case R.id.btnBookUnread: addBookToEstanteria(3, recommends, 0); break;
         }
     }
 
     private void loadBookData() {
-        detalle = getIntent();
-
         String titulo = detalle.getStringExtra("titulo");
         String autor = detalle.getStringExtra("autor");
         String categoria = detalle.getStringExtra("categoria");
@@ -103,8 +106,8 @@ public class BDetailActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
-                    case DialogInterface.BUTTON_POSITIVE:addBookToEstanteria(1, 1, 100); break;
-                    case DialogInterface.BUTTON_NEGATIVE:addBookToEstanteria(1, 0, 100); break;
+                    case DialogInterface.BUTTON_POSITIVE: addBookToEstanteria(1, 1, 100); break;
+                    case DialogInterface.BUTTON_NEGATIVE: addBookToEstanteria(1, 0, 100); break;
                 }
             }
         };
@@ -114,11 +117,11 @@ public class BDetailActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
-    private void getSeekBarDialog(){
+    private void getSeekBarDialog() {
         final AlertDialog.Builder popDialog = new AlertDialog.Builder(this);
 
         LayoutInflater inflater = this.getLayoutInflater();
-        View view=inflater.inflate(R.layout.dialog_seek,null);
+        View view = inflater.inflate(R.layout.dialog_seek, null);
         SeekBar seekBar = view.findViewById(R.id.size_seekbar);
         final TextView seekProgress = view.findViewById(R.id.set_size_help_text);
 
@@ -134,13 +137,15 @@ public class BDetailActivity extends AppCompatActivity implements View.OnClickLi
         });
         popDialog.setView(view);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) { seekProgress.setText(progress + " %"); progreso = progress; }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                seekProgress.setText(progress + " %");
+                progreso = progress;
             }
+
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) { }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) { }
         });
         popDialog.show();
     }
@@ -169,12 +174,21 @@ public class BDetailActivity extends AppCompatActivity implements View.OnClickLi
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("identifier", detalle.getStringExtra("id"));
+                params.put("title", detalle.getStringExtra("titulo"));
+                params.put("authors", detalle.getStringExtra("autor"));
+                params.put("publisher", detalle.getStringExtra("editorial"));
+                params.put("description", detalle.getStringExtra("descripcion"));
+                params.put("publishedDate", detalle.getStringExtra("fecha"));
+                params.put("pageCount", detalle.getStringExtra("paginas"));
+                params.put("categories", detalle.getStringExtra("categoria"));
+                params.put("thumbnail", detalle.getStringExtra("miniatura"));
                 params.put("username", appUtils.getUsername());
                 params.put("state", String.valueOf(state));
                 params.put("progress", String.valueOf(progress));
                 params.put("recommendation", String.valueOf(recommends));
                 return params;
             }
+
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();

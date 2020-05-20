@@ -60,6 +60,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     }
 
 
+    private void moveToShelves() {
+        ShelvesFragment fragment= new ShelvesFragment();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(((ViewGroup)getView().getParent()).getId(), fragment, "findThisFragment")
+                .commit();
+    }
+
     private void moveToSettings() {
         SettingsFragment fragment= new SettingsFragment();
         getActivity().getSupportFragmentManager().beginTransaction()
@@ -106,7 +113,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnEditProfile: moveToEditProfile(); break;
-            case R.id.btnSeeBooks: break;
+            case R.id.btnSeeBooks: moveToShelves(); break;
             case R.id.btnSettings: moveToSettings(); break;
         }
     }

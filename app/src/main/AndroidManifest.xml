@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".utils.SessionManager"></activity>
-        <activity android:name=".PerfilUsuarioActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,11 +19,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".BDetailActivity" />
-        <activity android:name=".SearchActivity" />
         <activity android:name=".RegistroActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".EstanteriaActivity" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

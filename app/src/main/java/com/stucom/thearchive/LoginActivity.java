@@ -73,8 +73,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("Pol", response);
-
                         Gson gson = new Gson();
                         Token token = gson.fromJson(response, Token.class);
                         String token_aux = token.getToken();
@@ -86,7 +84,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         ed.apply();
 
                         moveToMain();
-                        //appUtils.showAlert(LoginActivity.this);
                     }
                 },
                 new Response.ErrorListener() {
@@ -95,7 +92,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         prepareProgressBar(false);
                         btnSignIn.setVisibility(View.VISIBLE);
                         StyleableToast.makeText(LoginActivity.this, "Your login credentials are not corrects", Toast.LENGTH_LONG, R.style.toast).show();
-                        Log.d("Pol", error.toString());
                     }
                 }
         ) {

@@ -37,7 +37,11 @@
     <string name="share_text">If you want to organize your book shelf virtually on your smartphone, I recommend this App: TheArchive</string>
     <string name="share_thanks">To collaborate on the project, the best way to help us is by sharing it!</string>
     <string name="content_download">Could not download content</string>
-
+    <string-array name="type">
+        <item>Read</item>
+        <item>Reading</item>
+        <item>Unread</item>
+    </string-array>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 

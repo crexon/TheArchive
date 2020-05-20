@@ -57,7 +57,6 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("Pol", response);
                         moveToLogin();
                     }
                 },
@@ -67,7 +66,6 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                         prepareProgressBar(false);
                         findViewById(R.id.btnSignUp).setVisibility(View.VISIBLE);
                         StyleableToast.makeText(RegistroActivity.this, "The data provided is not correct", Toast.LENGTH_LONG, R.style.toast).show();
-                        Log.d("Pol", error.toString());
                     }
                 }
         ) {
