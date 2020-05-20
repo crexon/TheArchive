@@ -40,4 +40,6 @@
     <string name="share_text">Si quieres organizar tu estanteria de libros de forma virtual en smartphone, te recomiendo esta aplicación: TheArchive</string>
     <string name="share_thanks">Para colaborar en el proyecto, la mejor forma de ayudarnos es compartiendolo!</string>
     <string name="content_download">No se ha podido descargar</string>
+    <string name="delete_book_error">¡No se a podido eliminar el libro!</string>
+    <string name="delete_book_correct">¡El libro ha sido eliminada correctamente!</string>
 </resources>

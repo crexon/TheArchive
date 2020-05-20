@@ -1,9 +1,10 @@
 package com.stucom.thearchive.modelo_navigation;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +14,13 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -82,8 +83,6 @@ public class ShelvesFragment extends Fragment {
     }
 
     protected void downloadBooks(final int type) {
-        prepareProgressBar(true);
-
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         String url = "http://169.254.25.54:8000/archive/estanteria/" + type +"/" + appUtils.getUsername();
         StringRequest request = new StringRequest(
@@ -92,7 +91,6 @@ public class ShelvesFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        prepareProgressBar(false);
                         Gson gson = new Gson();
                         List<Shelve> libros = gson.fromJson(response, new TypeToken<List<Shelve>>(){}.getType());
                         ShelveAdapter adapter = new ShelveAdapter(libros);
@@ -102,7 +100,6 @@ public class ShelvesFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        prepareProgressBar(false);
                         StyleableToast.makeText(getActivity(), getActivity().getString(R.string.content_download), Toast.LENGTH_LONG, R.style.toast).show();
                     }
                 }
@@ -152,6 +149,17 @@ public class ShelvesFragment extends Fragment {
                         startActivity(detalle);
                     }
                 });
+
+                view.setOnLongClickListener(new View.OnLongClickListener() {
+
+                    @Override
+                    public boolean onLongClick(View v) {
+                        int position = getAdapterPosition();
+                        Shelve book = books.get(position);
+                        dialogQuestion(book.getIdBook());
+                        return false;
+                    }
+                });
             }
         }
 
@@ -186,6 +194,61 @@ public class ShelvesFragment extends Fragment {
         }
     }
 
+    protected void deleteBooksFromShelve(final String identifier){
+        prepareProgressBar(true);
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        String url = "http://169.254.25.54:8000/archive/estanteria/" + appUtils.getUsername() + "/" + identifier;
+        StringRequest request = new StringRequest(
+                Request.Method.DELETE,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        prepareProgressBar(false);
+                        StyleableToast.makeText(getActivity(), getActivity().getString(R.string.delete_book_correct), Toast.LENGTH_LONG, R.style.toast).show();
+                        reloadFragment();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        prepareProgressBar(false);
+                        StyleableToast.makeText(getActivity(), getActivity().getString(R.string.delete_book_error), Toast.LENGTH_LONG, R.style.toast).show();
+                    }
+                })
+        {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Authorization", "Token " + appUtils.getToken());
+                return params;
+            }
+        };
+        queue.add(request);
+    }
+
+    private void reloadFragment(){
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        if (Build.VERSION.SDK_INT >= 26) {
+            ft.setReorderingAllowed(false);
+        }
+        ft.detach(this).attach(this).commit();
+    }
+
+    private void dialogQuestion(final String identifier) {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE: deleteBooksFromShelve(identifier); break;
+                    case DialogInterface.BUTTON_NEGATIVE: break;
+                }
+            }
+        };
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("¿Seguro que quieres eliminar el libro de tu estanteria?").setPositiveButton("Sí", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
+    }
 
     private void prepareProgressBar(boolean mode) {
         if (mode) {
