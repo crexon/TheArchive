@@ -42,4 +42,6 @@
     <string name="content_download">No se ha podido descargar</string>
     <string name="delete_book_error">¡No se a podido eliminar el libro!</string>
     <string name="delete_book_correct">¡El libro ha sido eliminada correctamente!</string>
+    <string name="option_search">Buscar</string>
+    <string name="option_feed">Historial</string>
 </resources>

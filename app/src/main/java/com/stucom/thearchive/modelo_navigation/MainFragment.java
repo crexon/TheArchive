@@ -21,8 +21,8 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
         TabLayout tabLayout = (TabLayout) v.findViewById(R.id.tabs);
-        tabLayout.addTab(tabLayout.newTab().setText("Feed"));
-        tabLayout.addTab(tabLayout.newTab().setText("Buscar"));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.option_feed));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.option_search));
         final ViewPager viewPager = (ViewPager) v.findViewById(R.id.viewpager);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
